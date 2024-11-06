@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Canvas Grade Calculator</title>
+  <style>
+    body {
+      width: 400px;
+      padding: 20px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      margin: 0;
+    }
+
+    h3 {
+      margin: 0 0 15px 0;
+      color: #2d3b45;
+      font-size: 16px;
+    }
+
+    #loading {
+      text-align: center;
+      padding: 20px;
+    }
+
+    #error, #not-on-canvas {
+      display: none;
+      color: #721c24;
+      background-color: #f8d7da;
+      border: 1px solid #f5c6cb;
+      padding: 12px;
+      border-radius: 4px;
+      margin-bottom: 15px;
+    }
+
+    .summary {
+      background-color: #f5f5f5;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .grade-pill {
+      background-color: #0374B5;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      display: inline-block;
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .update-time {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .stat {
+      flex: 1;
+      background: white;
+      padding: 10px;
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    .stat .label {
+      display: block;
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 4px;
+    }
+
+    .stat .value {
+      font-size: 16px;
+      font-weight: bold;
+      color: #2d3b45;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f5f5f5;
+      font-weight: 600;
+      color: #2d3b45;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .group-section {
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  }
+
+  .group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background-color: #f8f9fa;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .group-header:hover {
+    background-color: #e9ecef;
+  }
+
+  .group-summary {
+    flex-grow: 1;
+  }
+
+  .group-name {
+    font-weight: bold;
+    margin-right: 1rem;
+  }
+
+  .group-stats {
+    color: #666;
+    font-size: 0.9em;
+  }
+
+  .assignments-list {
+    display: none;
+    padding: 1rem;
+  }
+
+  .assignments-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+  }
+
+  .assignments-table th,
+  .assignments-table td {
+    padding: 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+
+  .assignments-table tr.missing {
+    color: #dc3545;
+  }
+
+  .assignments-table tr.submitted {
+    color: #28a745;
+  }
+
+  .toggle-icon {
+    transition: transform 0.2s;
+  }
+
+  .group-section.active .toggle-icon {
+    transform: rotate(180deg);
+  }
+  </style>
+</head>
+<body>
+  <div id="loading">Loading grades...</div>
+  <div id="error"></div>
+  <div id="not-on-canvas">
+    Please navigate to your Canvas grades page to see your grade calculation.
+  </div>
+  <div id="results" style="display: none;"></div>
+  <script src="popup.js"></script>
+</body>
+</html>

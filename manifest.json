@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Canvas Grade Calculator",
+  "version": "1.0",
+  "description": "Automatically calculates weighted grades in Canvas",
+  "permissions": ["storage", "activeTab"],
+  "host_permissions": ["*://*.instructure.com/*"],
+  "content_scripts": [
+    {
+      "matches": ["*://*.instructure.com/courses/*/grades"],
+      "js": ["content.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
